@@ -3,6 +3,7 @@ import { Employee } from './employee';
 import { EmployeeService } from './employee.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { response } from 'express';
 
 @Component({
   selector: 'app-root',
@@ -21,17 +22,16 @@ export class App implements OnInit {
   ngOnInit(): void {
     this.getEmployees();
   }
-  
-  // TODO changer le subscribe
+
   public getEmployees(): void {
-    this.employerService.getEmployees().subscribe(
-     (response: Employee[]) => {
+    this.employerService.getEmployees().subscribe({
+      next : (response: Employee[]) => {
         this.employees = response;
       },
-      (error: HttpErrorResponse) => {
+      error : (error : HttpErrorResponse) => {
         alert(error.message);
       }
-    );
+    })
   }
  }
 
