@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link">Add Employee <span class="sr-only">(current)</span></a>
+                <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Employee <span class="sr-only">(current)</span></a>
             </li>
         </ul>
 
@@ -19,7 +19,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container" id="main-container">
     <div class="row">
         <div *ngFor="let employee of employees" class="col-md-6 col-xl-3">
             <div class="card m-b-30">
@@ -38,9 +38,118 @@
                 </ul>
                 <div class="card-body">
                     <div class="float-right btn-group btn-group-sm">
-                        <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-                        <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                        <a (click)="onOpenModal(employee, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                        <a (click)="onOpenModal(employee, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
+<!-- Add Employee Modal-->
+<div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addEmployeeModalLabel">Add New Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name" class="col-form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name" required>
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-form-label">Email</label>
+            <input type="text" class="form-control" id="email" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <label for="jobTitle" class="col-form-label">Job Title</label>
+            <input type="text" class="form-control" id="jobTitle" placeholder="Job Title" required>
+          </div>
+          <div class="form-group">
+            <label for="phone" class="col-form-label">Phone</label>
+            <input type="text" class="form-control" id="phone" placeholder="Phone" required>
+          </div>
+          <div class="form-group">
+            <label for="imageUrl" class="col-form-label">Image URL</label>
+            <input type="text" class="form-control" id="imageUrl" placeholder="Image Url">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add New Employee</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Employee Modal-->
+<div class="modal fade" id="editEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editEmployeeModalLabel">Edit Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name" class="col-form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name" required>
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-form-label">Email</label>
+            <input type="text" class="form-control" id="email" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <label for="jobTitle" class="col-form-label">Job Title</label>
+            <input type="text" class="form-control" id="jobTitle" placeholder="Job Title" required>
+          </div>
+          <div class="form-group">
+            <label for="phone" class="col-form-label">Phone</label>
+            <input type="text" class="form-control" id="phone" placeholder="Phone" required>
+          </div>
+          <div class="form-group">
+            <label for="imageUrl" class="col-form-label">Image URL</label>
+            <input type="text" class="form-control" id="imageUrl" placeholder="Image Url">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Edit Employee</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Employee Modal-->
+<div class="modal fade" id="deleteEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="deleteEmployeeModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteEmployeeModalLabel">Delete Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure ? This action is irreversible.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Delete Employee</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
